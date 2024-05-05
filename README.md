@@ -1,5 +1,5 @@
 <p align="center">
-  <image src="/art/herecomedatboi.jpg" width="500" height="500" ></image>
+  <image src="/art/herecomedatboi.jpg" width="500"></image>
 </p>
 <h1 align="center"><b>Boi Language</b></h1>
 <h4 align="center"><b><i>The Language of Memes</i></b></h4>

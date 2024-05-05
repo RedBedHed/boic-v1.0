@@ -128,27 +128,27 @@ To create a Token for any sequence of ASCII characters:
 
 An NFA is a Non-Deterministic Finite Automaton. In Thompson's construction, NFAs are composed recursively without simplification. Large NFAs are built from smaller NFAs using the following constructions:
 
-1) Trivial
+1) Trivial - C
 
 ![](/NFA/_1.png)
 
-2) Union
+2) Concatenation - CD
 
 ![](/NFA/_2.png)
 
-3) Concatenation
+3) Union - C|D
 
 ![](/NFA/_3.png)
 
-4) Star
+4) Star - C*
 
 ![](/NFA/_4.png)
 
-5) Plus
+5) Plus - C+
 
 ![](/NFA/_5.png)
 
-6) Zero-Or-One
+6) Zero-Or-One - C?
 
 ![](/NFA/_6.png)
 
