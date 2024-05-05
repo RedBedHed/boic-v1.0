@@ -519,4 +519,6 @@ Once you've built the compiler, it's time to write and compile your first progra
 3. Save and close the file.
 4. Compile and run the file by executing ```./boic.sh EXMP/hello.boi``` in your bash shell.
 
+![Cat Transcendence](../art/CatTranscendence.gif)
+
 LET'S GO!!! You are now an official Boi programmer, and that's totally *not* a worthless title. 
