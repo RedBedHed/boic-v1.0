@@ -30,7 +30,7 @@ Boic v1.0 generates assembly that *works.* It simplifies literal expressions, bu
 </p>
 
 ## Index
-1. [Boilang - The Guide](DOC/Lang.md)
+1. [Boilang Manual](DOC/Lang.md)
 2. [Example Boi Programs](DOC/Example.md)
 3. [Lexer Notes](DOC/Lexer.md)
 4. [Parser Notes](DOC/Parser.md)
