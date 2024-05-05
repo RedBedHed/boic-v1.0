@@ -1,5 +1,4 @@
 # Index
-
 1. [Types](#types)
 2. [Keywords](#keywords)
 3. [Functions](#functions)
@@ -27,8 +26,9 @@
     6. [Get String Input](#get-string-input)
     7. [Print Stack String](#print-stack-string)
     8. [Print Static String](#print-static-string)
-
-
+9. [Compiling](#compiling)
+    1. [Building](#building)
+    2. [Compiling Your First Boi Program](#compiling-your-first-boi-program)
 
 # Types
 | Type     | Size (in bits) | C equivalent   |
@@ -497,3 +497,26 @@ loopyboi( i[b] != 0 )
     ++b;
 }
 ```
+
+# Compiling
+
+## Building
+
+To Build the compiler, navigate to the boic-v1.0 root directory in your bash shell and execute ```make```.
+
+## Compiling Your First Boi Program
+
+Once you've built the compiler, it's time to write and compile your first program in Boi.
+
+1. Create a new file in the EXMP folder. Name it "hello.boi".
+2. Open "hello.boi" in your favorite text editor and type:
+```py
+@datboi(argybois)
+{
+    putBoi("Hello World!");
+}
+```
+3. Save and close the file.
+4. Compile and run the file by executing ```./boic.sh EXMP/hello.boi``` in your bash shell.
+
+LET'S GO!!! You are now an official Boi programmer, and that's totally *not* a worthless title. 
