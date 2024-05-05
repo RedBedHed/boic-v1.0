@@ -12,7 +12,7 @@
 
 Boi is a toy programming language in which all keywords contain the substring "boi". As you can tell, it is meant to be taken very seriously, and you should definitely waste your time learning it.
 
-## How Does Boic Work?
+## How Does Boic (Boi Compiler) Work?
 
 Boic&mdash; at the highest level&mdash; is the bash shell script, ```boic.sh```.
 
