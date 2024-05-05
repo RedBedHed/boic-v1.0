@@ -1,0 +1,23 @@
+@fib(n);
+
+@datboi(argybois)
+{
+    boi g;
+
+    getBoi(g);
+
+    putBoi(fib(g));
+
+    yeetboi 0;
+}
+
+@fib(n)
+{
+    ifboi( n == 0 )
+    { yeetboi 0; }
+
+    ifboi( n <= 2 )
+    { yeetboi 1; }
+
+    yeetboi fib(n - 1) + fib(n - 2);
+}

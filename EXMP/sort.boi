@@ -1,0 +1,367 @@
+@iSort( a[gigaboi], i, j, leftmost );
+@qSort( a[gigaboi], l, r, leftmost );
+
+#========================================================
+# Main.
+# This function generates an array of random numbers,
+# sorts it, and verifies that it is sorted.
+#========================================================
+
+@datboi(argybois)
+{
+    gigaboi arr[1000000];
+    boi i = 999999;
+    boi a = 3;
+    boi c = 9;
+    boi seed = 122434832;
+
+    loopyboi(i >= 0)
+    {
+        seed = (a * seed + c) % 123124352;
+        arr[i] = seed % 1000000;
+        --i;
+    }
+
+    qSort(arr, 0, 999999, 1);
+
+    i = 1;
+    loopyboi(i < 1000000)
+    {
+        ifboi ( arr[i - 1] > arr[i] )
+        {
+            putBoi("\nNOT SORTED!!!\n");
+            yeetboi 0;
+        }
+        # putBoi(arr[i]);
+        # putBoi(" ");
+        ++i;
+    }
+
+    putBoi("\nSORTED!!!\n");
+    yeetboi 0;
+}
+
+#========================================================
+# Quicksort.
+# Implements a dual-pivot quicksort with 
+# Dijkstra-Yaroslavskiy paritioning, which is faster
+# when the input is nearly sorted or contains many duplicate
+# elements.
+# The pivot is chosen by sorting five candidates and
+# selecting the middlemost.
+# Note: some of these variables could be re-used to save
+# stack space... But honestly... who really cares? :P
+#========================================================
+
+@qSort( a[gigaboi], l, r, leftmost )
+{
+    boi third;
+    boi y;
+    boi x;
+    boi p1;
+    boi p2;
+    boi mid;
+    boi sl;
+    boi sr;
+    boi o;
+    boi g;
+    boi k;
+
+    x = r - l;
+
+    # If the interval is small, insertion sort.
+    ifboi(x < 50)
+    { yeetboi iSort( a, l, r, leftmost ); }
+
+    # Select the pivot.
+    y = x >> 2;
+    third = y + (y >> 1);
+    mid = l + (x >> 1);
+    sl = l + third;
+    sr = r - third;
+
+    ifboi(a[sl] < a[l])
+    {
+        y = a[sl];
+        a[sl] = a[l];
+        a[l] = y;
+    }
+
+    ifboi(a[mid] < a[sl])
+    {
+        y = a[mid];
+        a[mid] = a[sl];
+        a[sl] = y;
+        ifboi(y < a[l])
+        {
+            a[sl] = a[l];
+            a[l] = y;
+        }
+    }
+
+    ifboi(a[sr] < a[mid])
+    {
+        y = a[sr];
+        a[sr] = a[mid];
+        a[mid] = y;
+        ifboi(y < a[sl])
+        {
+            a[mid] = a[sl];
+            a[sl]= y;
+            ifboi(y < a[l])
+            {
+                a[sl] = a[l];
+                a[l] = y;
+            }
+        }
+    }
+
+    ifboi(a[r] < a[sr])
+    {
+        y = a[r];
+        a[r] = a[sr];
+        a[sr] = y;
+        ifboi(y < a[mid])
+        {
+            a[sr] = a[mid];
+            a[mid] = y;
+            ifboi(y < a[sl])
+            {
+                a[mid] = a[sl];
+                a[sl] = y;
+                ifboi(y < a[l])
+                {
+                    a[sl] = a[l];
+                    a[l] = y;
+                }
+            }
+        }
+    }
+
+    # If no pivots are equal, select two
+    # and partition three ways.
+    ifboi( 
+        a[l]   < a[sl]  &&
+        a[sl]  < a[mid] &&
+        a[mid] < a[sr]  &&
+        a[sr]  < a[r] )
+    {
+        p1 = a[sl];
+        p2 = a[sr];
+        a[sl] = a[l];
+        a[sr] = a[r];
+        o = l;
+        g = r;
+
+        # Skip elements in order.
+        loopyboi(a[++o] < p1) {}
+        loopyboi(a[--g] > p2) {}
+
+        k = o;
+
+        # partition in three ways.
+        loopyboi(k <= g)
+        {
+            ifboi(a[k] < p1)
+            {
+                y = a[k];
+                a[k] = a[o];
+                a[o] = y;
+                ++o;
+            }
+            elifboi(a[k] > p2)
+            {
+                loopyboi( a[g] > p2 && k < g ) { --g; }
+                y = a[k];
+                a[k] = a[g];
+                a[g] = y;
+                --g;
+                ifboi(a[k] < p1)
+                {
+                    y = a[k];
+                    a[k] = a[o];
+                    a[o] = y;
+                    ++o;
+                }
+            }
+            ++k;
+        }
+
+        # Swap pivots back.
+        a[l] = a[--o];
+        a[o] = p1;
+        a[r] = a[++g];
+        a[g] = p2;
+
+        k = o;
+        y = g;
+
+        ifboi(k > l) { --k; }
+        ifboi(y < r) { ++y; }
+
+        # sort left and right portions.
+        qSort(a, l, k, leftmost);
+        qSort(a, y, r, 0);
+
+        ifboi(o < g) { ++o; }
+        ifboi(o < g) { --g; }
+
+        # As Yaroslavskiy observed, The
+        # middle can have pivot duplicates.
+        # Get them out of the way if the
+        # interval is large (2/3).  
+        ifboi((g - o) >= (x - third))
+        {
+            k = o;
+            loopyboi(k <= g)
+            {
+                ifboi(a[k] == p1)
+                {
+                    y = a[k];
+                    a[k] = a[o];
+                    a[o] = y;
+                    ++o;
+                }
+                elifboi(a[k] == p2)
+                {
+                    y = a[k];
+                    a[k] = a[g];
+                    a[g] = y;
+                    --g;
+                    ifboi(a[k] == p1)
+                    {
+                        y = a[k];
+                        a[k] = a[o];
+                        a[o] = y;
+                        ++o;
+                    }
+                }
+                ++k;
+            }
+        }
+
+        # sort middle.
+        qSort(a, o, g, 0);
+    }
+    elseboi
+    {
+        # Swap the pivot out to the side.
+        p1 = a[mid];
+        a[mid] = a[l];
+        o = l + 1;
+        g = r;
+        k = o;
+
+        # Partition.
+        loopyboi(k <= g)
+        {
+            ifboi(a[k] < p1)
+            {
+                y = a[k];
+                a[k] = a[o];
+                a[o] = y;
+                ++o;
+            }
+            elifboi(a[k] > p1)
+            {
+                loopyboi(a[g] > p1 && k < g) { --g; }
+                y = a[k];
+                a[k] = a[g];
+                a[g] = y;
+                --g;
+                ifboi(a[k] < p1)
+                {
+                    y = a[k];
+                    a[k] = a[o];
+                    a[o] = y;
+                    ++o;
+                }
+            }
+            ++k;
+        }
+
+        # Swap the pivot back.
+        a[l] = a[--o];
+        a[o] = p1;
+
+        # Skip.
+        ifboi(o > l) { --o; }
+        ifboi(g < r) { ++g; }
+
+        # Sort left/right recursively.
+        qSort( a, l, o, leftmost );
+        qSort( a, g, r, 0 );
+    }
+}
+
+#========================================================
+# Insertion Sort.
+# Implements a two-part insertion sort. Uses classical
+# Insertion Sort on the leftmost interval. Uses Pair 
+# Insertion Sort on all other intervals.
+#========================================================
+
+@iSort( a[gigaboi], l, r, leftmost )
+{
+    boi x;
+    boi t;
+    boi u;
+
+    ifboi( leftmost )
+    {
+        # Regular insertion sort.
+        x = l;
+        loopyboi( x <= r )
+        {
+            t = a[x];
+            u = x - 1;
+            loopyboi( u >= l && t < a[u] )
+            {
+                a[ u + 1 ] = a[u];
+                --u;
+            }
+            a[u + 1] = t;
+            ++x;
+        }
+    }
+    elseboi
+    {
+        # Pair insertion sort.
+        loopyboi( a[l] >= a[l - 1] )
+        {
+            ifboi( l >= r )
+            {
+                yeetboi 0;
+            }
+            ++l;
+        }
+        x = l;
+        loopyboi( ++l <= r )
+        {
+            t = a[x];
+            u = a[l];
+            ifboi( u < t )
+            {
+                t = u;
+                u = a[x];
+            }
+            loopyboi( u < a[--x] )
+            {
+                a[x + 2] = a[x];
+            }
+            a[++x + 1] = u;
+            loopyboi( t < a[--x] )
+            {
+                a[x + 1] = a[x];
+            }
+            a[x + 1] = t;
+            x = ++l;
+        }
+        t = a[r];
+        loopyboi( t < a[--r] )
+        {
+            a[r + 1] = a[r];
+        }
+        a[r + 1] = t;
+    }
+}

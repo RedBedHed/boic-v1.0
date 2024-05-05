@@ -1,0 +1,186 @@
+@hasWin( b );
+@isFull( b );
+@emptySquare( b, i );
+@square( i );
+@printBoard( o, x );
+@bsf( b );
+@set( b, i );
+
+@search( bm[boi], o, x, a, b, d );
+
+@datboi( argybois )
+{
+    boi o = 0;
+    boi x = 0;
+    boi bm[1];
+    boi m;
+
+    # This is a fully functional tic tac toe game for the terminal.
+    # It is written in boi, "the language of memes."
+    
+    printBoard( o, x );
+    loopyboi( !isFull( o | x ) && !hasWin( o ) && !hasWin( x ) )
+    {
+        putBoi("\nMake a move (1-9)\n");
+        putBoi("9 8 7\n");
+        putBoi("6 5 4\n");
+        putBoi("3 2 1\n>>_");
+        getBoi( m );
+        ifboi( m >= 1 && m <= 9 && emptySquare( ( o | x ), m - 1 ) )
+        {
+            o = set( o, m - 1 );
+            search( bm, o, x, -100, 100, 0 );
+            ifboi( isFull( o | x ) )
+            { 
+                printBoard( o, x );
+                putBoi( "\nDraw!!!\n" );
+                yeetboi( 0 );
+            }
+            x = set( x, bm[0] );
+            printBoard( o, x );
+        }
+    }
+
+    putBoi( "\nI win!!!\n" );
+    
+}
+
+@search( bm[boi], o, x, a, b, d )
+{
+    boi score;
+    boi s;
+    boi i = 0;
+
+    # This is a tic tac toe AI, written in boi.
+    # It showcases boi's support for recursion.
+
+    ifboi( hasWin( x ) ) { yeetboi( 10 - d ); }
+
+    ifboi( hasWin( o ) ) { yeetboi( d - 10 ); }
+
+    ifboi( isFull( o | x ) ) { yeetboi( 0 ); }
+
+    score = -100;
+    loopyboi( i < 9 )
+    {
+        ifboi( emptySquare( (o | x), i ) )
+        {
+            x = set( x, i );
+            s = 
+            -search( 
+                bm, x, o, -b, -a, (d + 1) 
+            );
+            x = set( x, i );
+
+            ifboi( s > score )
+            {
+                ifboi( d == 0 ) { bm[0] = i; }
+                score = s;
+                ifboi( s > a )
+                {
+                    a = s;
+                    ifboi( s >= b )
+                    { yeetboi( score ); }
+                }
+            }
+        }
+        ++i;
+    }
+
+    yeetboi( score );
+}
+
+@bsf( b )
+{
+    smolboi db = 
+    {
+        0,   1, 48,  2, 57, 49, 28,  3,
+        61, 58, 50, 42, 38, 29, 17,  4,
+        62, 55, 59, 36, 53, 51, 43, 22,
+        45, 39, 33, 30, 24, 18, 12,  5,
+        63, 47, 56, 27, 60, 41, 37, 16,
+        54, 35, 52, 21, 44, 32, 23, 11,
+        46, 26, 40, 15, 34, 20, 31, 10,
+        25, 14, 19,  9, 13,  8,  7,  6
+    };
+
+    # Bit Scan Forward - From the Chess Programming Wiki
+    yeetboi( db[ ( ( b & -b ) * 285870213051386505 ) >> 58 ] );
+}
+
+@printBoard( o, x )
+{
+    smolboi a[9];
+    boi i = 0;
+
+    # This function prints the board!
+
+    loopyboi( i < 9 )
+    {
+        a[i] = '-';
+        ++i;
+    }
+    loopyboi( o )
+    {
+        a[ bsf( o ) ] = 'o';
+        o = o & (o - 1);
+    }
+    loopyboi( x )
+    {
+        a[ bsf( x ) ] = 'x';
+        x = x & (x - 1);
+    }
+    putBoi("\n ");
+    putSmolBoi( a[0] );
+    putBoi(" | ");
+    putSmolBoi( a[1] );
+    putBoi(" | ");
+    putSmolBoi( a[2] );
+    putBoi("\n---+---+---\n ");
+    putSmolBoi( a[3] );
+    putBoi(" | ");
+    putSmolBoi( a[4] );
+    putBoi(" | ");
+    putSmolBoi( a[5] );
+    putBoi("\n---+---+---\n ");
+    putSmolBoi( a[6] );
+    putBoi(" | ");
+    putSmolBoi( a[7] );
+    putBoi(" | ");
+    putSmolBoi( a[8] );
+    putBoi("\n");
+}
+
+@square( i ) { yeetboi( 256 >> i ); }
+
+@emptySquare( b, i ) { yeetboi !( b & square( i ) ); }
+
+@isFull( b ) { yeetboi( b == 511 ); }
+
+@set( b, i ) { yeetboi( b ^ square( i ) ); }
+
+@hasWin( b )
+{
+    smolboi magic = 
+    { 
+        128, 128, 128, 128,
+        128, 128, 128, 255,
+        128, 170, 240, 250,
+        128, 170, 240, 255,
+        128, 128, 204, 204,
+        128, 128, 204, 255,
+        128, 170, 252, 254,
+        128, 170, 252, 255,
+        128, 128, 170, 170,
+        240, 240, 250, 255,
+        128, 170, 250, 250,
+        240, 250, 250, 255,
+        128, 128, 238, 238,
+        240, 240, 254, 255,
+        255, 255, 255, 255,
+        255, 255, 255, 255 
+    };
+
+    # Probes the magic win table that I pre-computed.
+    yeetboi( magic[ b >> 3 ] & ( 1 << ( b & 7 ) ) );
+}

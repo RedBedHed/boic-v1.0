@@ -1,0 +1,172 @@
+@base( s[smolboi], i, b[gigaboi] );
+@e10( s[smolboi], i, b[gigaboi], c );
+
+#==========================================================
+# The pt.1 function for predictive parsing via recursion.
+#==========================================================
+
+@calc( s[smolboi], i, b[gigaboi], c )
+{
+    gigaboi x[1];
+    boi j;
+    smolboi g;
+
+    switchyboi( c )
+    {
+    caseyboi '|' { g = '^'; }
+    caseyboi '^' { g = '&'; }
+    caseyboi '&' { g = '>'; }
+    caseyboi '>' { g = '<'; }
+    caseyboi '<' { g = '-'; }
+    caseyboi '-' { g = '+'; }
+    caseyboi '+' { g = '%'; }
+    caseyboi '%' { g = '/'; }
+    caseyboi '/' { g = '*'; }
+    caseyboi '*' { g = 'b'; }
+    caseyboi 'b' { yeetboi base( s, i, b ); }
+    }
+
+    i = calc( s, i, b, g );
+    j = e10( s, i, x, c );
+
+    ifboi( i < j )
+    { 
+        switchyboi( c )
+        {
+        caseyboi '|' { b[0] = b[0] | x[0];  }
+        caseyboi '^' { b[0] = b[0] ^ x[0];  }
+        caseyboi '&' { b[0] = b[0] & x[0];  }
+        caseyboi '>' { b[0] = b[0] >> x[0]; }
+        caseyboi '<' { b[0] = b[0] << x[0]; }
+        caseyboi '-' { b[0] = b[0] - x[0];  }
+        caseyboi '+' { b[0] = b[0] + x[0];  }
+        caseyboi '%' { b[0] = b[0] % x[0];  }
+        caseyboi '/' { b[0] = b[0] / x[0];  }
+        caseyboi '*' { b[0] = b[0] * x[0];  }
+        }
+    }
+    yeetboi j;
+}
+
+#==========================================================
+# The pt.2 function for predictive parsing via recursion.
+#==========================================================
+
+@e10( s[smolboi], i, b[gigaboi], c )
+{
+    gigaboi x[1];
+    boi j;
+    smolboi g;
+
+    ifboi( s[i] != c )
+    {
+        yeetboi i;
+    }
+
+    switchyboi( c )
+    {
+    caseyboi '|' { g = '^'; }
+    caseyboi '^' { g = '&'; }
+    caseyboi '&' { g = '>'; }
+    caseyboi '>' { g = '<'; }
+    caseyboi '<' { g = '-'; }
+    caseyboi '-' { g = '+'; }
+    caseyboi '+' { g = '%'; }
+    caseyboi '%' { g = '/'; }
+    caseyboi '/' { g = '*'; }
+    caseyboi '*' { g = 'b'; }
+    }
+
+    ++i;
+    i = calc( s, i, b, g );
+    j = e10( s, i, x, c );
+    
+    ifboi( i < j )
+    { 
+        switchyboi( c )
+        {
+        caseyboi '|' { b[0] = b[0] | x[0];  }
+        caseyboi '^' { b[0] = b[0] ^ x[0];  }
+        caseyboi '&' { b[0] = b[0] & x[0];  }
+        caseyboi '>' { b[0] = b[0] >> x[0]; }
+        caseyboi '<' { b[0] = b[0] << x[0]; }
+        caseyboi '-' { b[0] = b[0] - x[0];  }
+        caseyboi '+' { b[0] = b[0] + x[0];  }
+        caseyboi '%' { b[0] = b[0] % x[0];  }
+        caseyboi '/' { b[0] = b[0] / x[0];  }
+        caseyboi '*' { b[0] = b[0] * x[0];  }
+        }
+    }
+    yeetboi j;
+}
+
+#==========================================================
+# The base function starts a nested expression or parses an 
+# int.
+#==========================================================
+
+@base( s[smolboi], i, b[gigaboi] )
+{
+    ifboi(s[i] == '(')
+    {
+        i = calc(s, ++i, b, '|');
+        ifboi(s[i] != ')')
+        {
+            putBoi("no closing paren!!!\n");
+            bonkboi;
+        }
+        yeetboi ++i;
+    }
+    b[0] = 0;
+    loopyboi(1)
+    {
+        switchyboi( s[i] )
+        {
+        caseyboi '0'
+        caseyboi '1'
+        caseyboi '2'
+        caseyboi '3'
+        caseyboi '4'
+        caseyboi '5'
+        caseyboi '6'
+        caseyboi '7'
+        caseyboi '8'
+        caseyboi '9'
+        { b[0] = (b[0] * 10) + (s[i] - '0'); ++i; }
+        caseyboi '|'
+        caseyboi '^'
+        caseyboi '&'
+        caseyboi '>'
+        caseyboi '<'
+        caseyboi '-'
+        caseyboi '+'
+        caseyboi '%'
+        caseyboi '/'
+        caseyboi '*' 
+        caseyboi ')'
+        caseyboi 10 { yeetboi i; }
+        fallboi 
+        {
+            putBoi("Illegal symbol: ");
+            putSmolBoi( s[i] );
+            putBoi("\n");
+            bonkboi;
+        }}
+    }
+}
+
+#==========================================================
+# Main.
+#==========================================================
+
+@datboi(argybois)
+{
+    boi i = 0;
+    gigaboi u[1];
+    smolboi s[100];
+    putBoi("Enter an expression: ");
+    getSmolBois(s, 100);
+    calc(s, i, u, '|');
+    putBoi( u[0] );
+    putBoi("\n");
+}

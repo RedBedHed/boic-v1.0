@@ -1,0 +1,53 @@
+@datboi(argybois) 
+{
+    boi i;
+    boi a;
+    boi sp;
+    boi sw;
+    smolboi arr[10000];
+    smolboi stack[10];
+    smolboi s[10000];
+
+    putBoi("Enter brainfuck string: ");
+    getSmolBois(s, 10000);
+
+    # This loopyboi implements 
+
+    loopyboi(i < 10000 && s[i] != 0) 
+    {
+        sw = s[i];
+        switchyboi(sw)
+        {
+            caseyboi '>'
+            { ++a; ++i; }
+            caseyboi '<'
+            { --a; ++i; }
+            caseyboi '+'
+            { arr[a] = arr[a] + 1; ++i; }
+            caseyboi '-'
+            { arr[a] = arr[a] - 1; ++i; }
+            caseyboi '.'
+            { putSmolBoi(arr[a]); ++i; }
+            caseyboi ','
+            { getBoi(arr[a]); ++i; }
+            caseyboi '['
+            {
+                ifboi(arr[a] == 0) 
+                {
+                    loopyboi(s[i] != ']') 
+                    { 
+                        ++i;
+                    }
+                } 
+                elseboi 
+                {
+                    stack[sp] = i;
+                    ++sp;
+                }
+                ++i;
+            }
+            caseyboi ']'
+            { i = stack[--sp]; }
+        }
+    }
+}
