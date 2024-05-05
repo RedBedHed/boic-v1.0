@@ -24,7 +24,7 @@ Boic runs the ```comp``` binary. Comp lexes your file according to the Boi Lexic
 ***No.***
 
 <p align="center">
-  <image src="/art/BoicGood.jpg" width="500"></image>
+  <image src="/art/BoicGood.jpg" width="400"></image>
 </p>
 
 ## Index
