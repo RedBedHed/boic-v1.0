@@ -20,10 +20,10 @@ Boic runs the ```comp``` binary. Comp lexes your file according to the Boi Lexic
 
 ## Does the Boi Compiler Generate Optimal Assembly?
 
-***No. God no.***
+***No.***
 
 <p align="center">
-  <image src="/art/BoicGood.jpg" width="200"></image>
+  <image src="/art/BoicGood.jpg" width="500"></image>
 </p>
 
 ## Index
