@@ -271,6 +271,8 @@ r = a[a[1]] + a[a[a[0]]];
 
 # Control Flow
 
+Control flow statements quite literally allow you to control the flow of the program. In Boi, control flow statements may be nested within each other to create complex programs.
+
 ## Conditionals
 
 In Boilang, the "if" keyword is "ifboi", the "else if" keyword is "elifboi", and the "else" keyword is "elseboi".
