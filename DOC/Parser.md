@@ -2,10 +2,10 @@
 
 ```
 <main>                := "@" "datboi" "(" "argybois" ")"
-<main-def>            := <main> <main-body>
+<main-def>            := <main> <func-body>
 
 <func-sig>            := "@" <var> "(" <formal-param-list> ")"
-<func-def>            := <func-sig> <main-body>
+<func-def>            := <func-sig> <func-body>
 <func-decl>           := <func-sig> ";"
 <func-call>           := <var> "(" <call-param-list> ")" <semicolon>
 <func-body>           := "{" <decl> <code> "}"
