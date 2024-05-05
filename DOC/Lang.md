@@ -500,6 +500,8 @@ loopyboi( i[b] != 0 )
 
 # Compiling
 
+The following steps assume that you've installed bash, gcc, and make.
+
 ## Building
 
 To Build the compiler, navigate to the boic-v1.0 root directory in your bash shell and execute ```make```.
