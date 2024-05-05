@@ -23,6 +23,8 @@ Boic runs the ```comp``` binary. Comp lexes your file according to the Boi Lexic
 
 ***No.***
 
+Boic v1.0 generates assembly that *works.* It simplifies literal expressions, but leaves everything else for runtime.
+
 <p align="center">
   <image src="/art/BoicGood.jpg" width="350"></image>
 </p>
