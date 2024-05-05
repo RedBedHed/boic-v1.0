@@ -1,4 +1,4 @@
-# Parser Grammar (Hopefully Complete...)
+# Main Grammar (Hopefully Complete...)
 
 ```
 <main>                := "@" "datboi" "(" "argybois" ")"
