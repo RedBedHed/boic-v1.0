@@ -9,7 +9,7 @@
     2. [Arrays and Strings](#arrays-and-strings)
 5. [Expressions](#expressions)
     1. [Express Math](#express-math)
-    2. [Nest Functions](#nest-functions)
+    2. [Express Function Calls](#express-function-calls)
     3. [Express Logic](#express-logic)
     4. [Express Array Access](#express-array-access)
 6. [Control Flow](#control-flow)
@@ -223,7 +223,7 @@ r = r << 1;
 r = r ^ r;
 ```
 
-## Nest Functions
+## Express Function Calls
 
 Functions are *almost* first-class citizens. Function calls are treated as expressions and may be nested within other expressions.
 
