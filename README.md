@@ -12,6 +12,12 @@
 
 Boi is a toy programming language in which all keywords contain the substring "boi". As you can tell, it is meant to be taken very seriously, and you should definitely waste your time learning it.
 
+## Index
+1. [Boilang Manual](DOC/Lang.md)
+2. [Example Boi Programs](DOC/Example.md)
+3. [Lexer Notes](DOC/Lexer.md)
+4. [Parser Notes](DOC/Parser.md)
+
 ## FAQ
 > ### How Does the Boi Compiler Work?
 
@@ -28,9 +34,3 @@ Boic v1.0 generates assembly that *works.* It simplifies literal expressions, bu
 <p align="center">
   <image src="/art/BoicGood.jpg" width="350"></image>
 </p>
-
-## Index
-1. [Boilang Manual](DOC/Lang.md)
-2. [Example Boi Programs](DOC/Example.md)
-3. [Lexer Notes](DOC/Lexer.md)
-4. [Parser Notes](DOC/Parser.md)
