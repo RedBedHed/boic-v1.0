@@ -16,7 +16,7 @@ Boi is a toy programming language in which all keywords contain the substring "b
 
 Boic&mdash; at the highest level&mdash; is the bash shell script, ```boic.sh```.
 
-Boic runs the ```comp``` binary. Comp lexes your file according to the Boi Lexical Specification, turning it into a list of "Tokens" (lexeme/token structures). Next, it feeds this list of tokens to a Recursive Descent parser, which transforms all expressions into Abstract Syntax Trees and generates x86 intel-syntax assembly as it parses. Boic then tells GCC to assemble the generated assembly and link it with the library file, creating an executable binary with relative addresses. Boic then executes this binary from your shell, replacing its relative addresses with physical addresses, loading it into volatile memory, and running it on your CPU.
+Boic runs the ```comp``` binary. Comp lexes your file according to the Boi Lexical Specification, turning it into a list of "Tokens" (lexeme/token structures). Next, it feeds this list of tokens to a Recursive Descent parser, which transforms all expressions into Abstract Syntax Trees and generates x86 intel-syntax assembly as it parses the trees and control flow. Boic then tells GCC to assemble the generated assembly and link it with the library file, creating an executable binary with relative addresses. Boic then executes this binary from your shell, replacing its relative addresses with physical addresses, loading it into volatile memory, and running it on your CPU.
 
 ## Index
 1. [Boilang - The Guide](DOC/Lang.md)
