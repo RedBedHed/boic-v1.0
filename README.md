@@ -22,6 +22,10 @@ Boic runs the ```comp``` binary. Comp lexes your file according to the Boi Lexic
 
 ***No. God no.***
 
+<p align="center">
+  <image src="/art/BoicGood.jpg" width="200"></image>
+</p>
+
 ## Index
 1. [Boilang - The Guide](DOC/Lang.md)
 2. [Example Boi Programs](DOC/Example.md)
