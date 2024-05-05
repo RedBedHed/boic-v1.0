@@ -1,7 +1,7 @@
 <p align="center">
   <image src="/art/herecomedatboi.jpg" width="500"></image>
 </p>
-<h1 align="center"><b>Boi Language</b></h1>
+<h1 align="center"><b>Boi</b></h1>
 <h4 align="center"><b><i>The Language of Memes</i></b></h4>
 <h5 align="center"><b><i>Version 1.0</i></b></h5>
 <h6 align="center"><b><i>(art from openart.ai)</i></b></h6>
