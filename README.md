@@ -16,4 +16,4 @@ Boi is a toy programming language in which all keywords contain the substring "b
 1. [Boilang - The Guide](DOC/Lang.md)
 2. [Example Boi Programs](DOC/Example.md)
 3. [Lexer Notes](DOC/Lexer.md)
-4. [Parser Notes]()
+4. [Parser Notes](DOC/Parser.md)

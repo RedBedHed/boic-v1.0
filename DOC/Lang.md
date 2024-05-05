@@ -12,7 +12,22 @@
     1. [Express Math](#express-math)
     2. [Nest Functions](#nest-functions)
     3. [Express Logic](#express-logic)
-    4. [Array ]
+    4. [Express Array Access](#express-array-access)
+6. [Control Flow](#control-flow)
+    1. [Conditionals](#conditionals)
+    2. [Loops](#loops)
+    3. [Switch](#switch)
+7. [Exit](#exit)
+8. [Library Calls](#library-calls)
+    1. [Print Integer](#print-integer)
+    2. [Get Integer](#get-integer)
+    3. [Print Character](#print-character)
+    4. [Get Character](#get-character)
+    5. [Print String Literal](#print-string-literal)
+    6. [Get String Input](#get-string-input)
+    7. [Print Stack String](#print-stack-string)
+    8. [Print Static String](#print-static-string)
+
 
 
 # Types
@@ -397,7 +412,7 @@ bonkboi;
 
 Boilang has a small library of pseudo-functions for standard input and output.
 
-## Print Integers
+## Print Integer
 
 ```py
 #=======================
