@@ -23,7 +23,6 @@
 <var>                 := [a-zA-Z_][a-zA-Z_0-9]*
 <num>                 := 0|([1-9][0-9]*)
 <string>              := "([\s!#-\[\[-~]|\\.)+"
-<var-num>             := <var> | <num>
 <char-num>            := <char> | <num>
 
 <lvalue>              := <var> "[" <expression> "]" | <var>
