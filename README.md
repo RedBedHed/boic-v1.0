@@ -20,7 +20,7 @@ Boic runs the ```comp``` binary. Comp lexes your file according to the Boi Lexic
 
 ## Does the Boi Compiler Generate Optimal Assembly?
 
-***No.***
+***No. God no.***
 
 ## Index
 1. [Boilang - The Guide](DOC/Lang.md)
