@@ -21,7 +21,7 @@ Boic executes the ```comp``` binary. Comp lexes your file according to the Boi L
 
 > ### Does the Boi Compiler Generate Optimal Assembly?
 
-***No.***
+**No.**
 
 Boic v1.0 generates assembly that *works.* It simplifies literal expressions, but leaves everything else for runtime.
 
