@@ -1,3 +1,5 @@
+@clear(a[smolboi], size);
+
 @datboi(argybois) 
 {
     boi i;
@@ -8,46 +10,68 @@
     smolboi stack[10];
     smolboi s[10000];
 
+    clear(arr, 10000);
+    clear(stack, 10);
+    clear(s, 10000);
+
     putBoi("Enter brainfuck string: ");
     getSmolBois(s, 10000);
 
-    # This loopyboi implements 
+    i = 0;
 
     loopyboi(i < 10000 && s[i] != 0) 
     {
         sw = s[i];
+        ++i;
         switchyboi(sw)
         {
             caseyboi '>'
-            { ++a; ++i; }
+            { ++a; }
             caseyboi '<'
-            { --a; ++i; }
+            { --a; }
             caseyboi '+'
-            { arr[a] = arr[a] + 1; ++i; }
+            { arr[a] = arr[a] + 1; }
             caseyboi '-'
-            { arr[a] = arr[a] - 1; ++i; }
+            { arr[a] = arr[a] - 1; }
             caseyboi '.'
-            { putSmolBoi(arr[a]); ++i; }
+            { putSmolBoi(arr[a]); }
             caseyboi ','
-            { getBoi(arr[a]); ++i; }
+            { getBoi(arr[a]); }
             caseyboi '['
             {
                 ifboi(arr[a] == 0) 
                 {
-                    loopyboi(s[i] != ']') 
-                    { 
-                        ++i;
-                    }
+                    loopyboi(s[++i] != ']') 
+                    { }
+                    ++i;
                 } 
                 elseboi 
                 {
                     stack[sp] = i;
                     ++sp;
                 }
-                ++i;
             }
             caseyboi ']'
-            { i = stack[--sp]; }
+            { 
+                ifboi(arr[a] != 0)
+                {
+                    i = stack[sp - 1]; 
+                }
+                elseboi
+                {
+                    --sp;
+                }
+            }
         }
+    }
+}
+
+@clear(a[smolboi], size)
+{
+    boi i = 0;
+    loopyboi(i < size)
+    {
+        a[i] = 0;
+        ++i;
     }
 }
