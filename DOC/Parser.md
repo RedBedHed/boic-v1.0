@@ -53,36 +53,52 @@
 
 ```
 <expression> := <logic-or>
+
 <logic-or>   := <logic-and> <e1>
 <e1>         := "||" <logic-and> <e1> | ""
+
 <logic-and>  := <logic-eq> <e2>
 <e2>         := "&&" <logic-eq> <e2> | ""
+
 <logic-eq>   := <logic-ne> <e3>
 <e3>         := "==" <logic-ne> <e3> | ""
+
 <logic-ne>   := <cmp> <e4>
 <e4>         := "!=" <cmp> <e4> | ""
+
 <cmp>        := <or> <e5>
 <e5>         := "<" <or> <e5> | "<=" <or> <e5> | ">" <or> <e5> | ">=" <or> <e5> | ""
+
 <or>         := <xor> <e6>
 <e6>         := "|" <xor> <e6> | ""
+
 <xor>        := <and> <e7>
 <e7>         := ^ <and> <e7> | ""
+
 <and>        := <shr> <e8>
 <e8>         := & <shr> <e8> | ""
+
 <shr>        := <shl> <e9>
 <e9>         := ">>" <shl> <e9> | ""
+
 <shl>        := <minus> <e10>
 <e10>        := "<<" <minus> <e10> | ""
+
 <minus>      := <plus> <e11>
 <e11>        := "-" <plus> <e11> | ""
+
 <plus>       := <mod> <e12> 
 <e12>        := "+" <mod> <e12> | ""
+
 <mod>        := <div> <e13>
 <e13>        := "%" <div> <e13> | ""
+
 <div>        := <mult> <e14>
 <e14>        := "/" <mult> <e14> | ""
+
 <mult>       := <base> <e15>
 <e15>        := "*" <base> <e15> | ""
+
 <base>       := "(" <expression> ")" | "--" <var> | "++" <var> |
                 "~" <var> | "!" <var> | "!!" <var> | "-" <var> |
                 "~" <num> | "!" <num> | "!!" <num> | "-" <num> |
