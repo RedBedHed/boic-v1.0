@@ -501,13 +501,13 @@ inline void smolboi_array_error( const Token& t )
 template< typename... Args >
 string ssprintf( const char* format, Args... args ) 
 {
-  int length = snprintf( nullptr, 0, format, args... );
-  assert( length >= 0 );
-  char* buf = new char[length + 1];
-  snprintf( buf, length + 1, format, args... );
-  string str( buf );
-  delete[] buf;
-  return str;
+    int length = snprintf( nullptr, 0, format, args... );
+    assert( length >= 0 );
+    char* buf = new char[length + 1];
+    snprintf( buf, length + 1, format, args... );
+    string str( buf );
+    delete[] buf;
+    return str;
 }
 
 shared_ptr<ASTNode> parse_exp_(Analyzer* const a);
