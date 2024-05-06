@@ -8,6 +8,7 @@
 #include "analyzer.h"
 #include <deque>
 #include <algorithm>
+#include <cstdio>
 
 using std::string;
 using std::vector;
@@ -19,6 +20,7 @@ using namespace lexer;
 
 using std::to_string;
 using std::exception;
+using std::snprintf;
 
 #define MAP_DEF( name, type ) \
 class name final : public unordered_map<string, type>   \
@@ -481,11 +483,24 @@ inline void smolboi_array_error( const Token& t )
     exit(0);    
 }
 
+// Solution by user2622016 on stack overflow.
+template< typename... Args >
+string ssprintf( const char* format, Args... args ) 
+{
+  int length = snprintf( nullptr, 0, format, args... );
+  assert( length >= 0 );
+  char* buf = new char[length + 1];
+  snprintf( buf, length + 1, format, args... );
+  string str( buf );
+  delete[] buf;
+  return str;
+}
+
 shared_ptr<ASTNode> parse_exp_(Analyzer* const a);
 
 #define BIN_DEF( NAME, TYPE )                                                           \
 inline void NAME( const char* s1, const char* s2 )                                      \
-{ char buff[50]; sprintf( buff, TYPE" %s, %s", s1, s2 ); x86.pb( string( buff ) ); }    \
+{ x86.pb( ssprintf( TYPE" %s, %s", s1, s2 ) ); }    \
 inline void NAME( const string& s1, const string& s2 )                                  \
 { NAME(s1.c_str(), s2.c_str()); }                                                       \
 inline void NAME( const char* s1, const string& s2 )                                    \
@@ -499,15 +514,15 @@ inline void NAME( const string& s1, const int i )                               
 
 #define UNA_DEF( NAME, TYPE )                                                           \
 inline void NAME( const char* s1 )                                                      \
-{ char buff[50]; sprintf( buff, TYPE" %s", s1 ); x86.pb( string( buff ) ); }            \
+{ x86.pb( ssprintf( TYPE" %s", s1 ) ); }            \
 inline void NAME( const string& s1 )                                                    \
 { NAME(s1.c_str()); }      
 
 #define MEM_DEF( NAME, TYPE )                                                           \
 inline string NAME( const char* s1 )                                                    \
-{ char buff[50]; sprintf( buff, TYPE"[ %s ]", s1 ); return string( buff ); }            \
+{ return ssprintf( TYPE"[ %s ]", s1 ); }            \
 inline string o##NAME( const char* s1, const char* s2 )                                 \
-{ char buff[50]; sprintf( buff, TYPE"[ %s+%s ]", s1, s2 ); return string( buff ); }     \
+{ return ssprintf( TYPE"[ %s+%s ]", s1, s2 ); }     \
 inline string NAME( const string& s1 )                                                  \
 { return NAME(s1.c_str()); }                                                            \
 inline string o##NAME( const string& s1, const string& s2 )                             \
@@ -552,17 +567,17 @@ vector<string> params;
 int rCount, sCount, dCount, vCount, eCount, lCount, aCount;
 
 inline void str_( const int s1, const string& s2 )
-{ char b[50]; sprintf( b, "S%d: .STRING ", s1 ); x86.pb( string( b ) + s2 ); }
+{ x86.pb( ssprintf( "S%d: .STRING ", s1 ) + s2 ); }
 
 inline void arr_( const int s1, const string& s2 )
-{ char b[50]; sprintf( b, ".lcomm D%d, %s", s1, s2.c_str() ); x86.pb( string( b ) ); }
+{ x86.pb( ssprintf( ".lcomm D%d, %s", s1, s2.c_str() ) ); }
 
 void cmp_( string& str, const string& s1, const string& s2 )
-{ char b[50]; sprintf( b, "cmp %s, %s\n", s1.c_str(), s2.c_str() ); str.append( b ); }
+{ str.append( ssprintf( "cmp %s, %s\n", s1.c_str(), s2.c_str() ) ); }
 void je_( string& str, const string& s1 )
-{ char b[50]; sprintf( b, "je %s\n", s1.c_str() ); str.append( b ); }
+{ str.append( ssprintf( "je %s\n", s1.c_str() ) ); }
 void jmp_( string& str, const string& s1 )
-{ char b[50]; sprintf( b, "jmp %s\n", s1.c_str() ); str.append( b ); }
+{ str.append( ssprintf( "jmp %s\n", s1.c_str() ) ); }
 
 BIN_DEF( mov_  , "mov"   ) BIN_DEF( add_   , "add"    ) BIN_DEF( sub_  , "sub"   )
 BIN_DEF( lea_  , "lea"   ) BIN_DEF( imul_  , "imul"   ) BIN_DEF( movzx_, "movzx" )
@@ -585,10 +600,10 @@ inline void ret_() { x86.pb( "ret" ); } inline void cqo_() { x86.pb( "cqo" ); }
 inline void syscall_() { x86.pb( "syscall" ); }
 
 inline void section_( const char* s1 )
-{ char b[50]; sprintf( b, ".section %s", s1 ); x86.pb( string( b ) ); }
+{ x86.pb( ssprintf( ".section %s", s1 ) ); }
 
 void push_( string& str, const char* reg )
-{ char b[50]; sprintf( b, "push %s", reg ); str.append( b ); }
+{ str.append( ssprintf( "push %s", reg ) ); }
 
 inline void x86_stack_alloc( const int idx, const int i, const vector<stack_arr_alloc>& v )
 { 
@@ -612,13 +627,13 @@ inline void x86_exit_insert( const string& lb, const vector<int>& idx )
 }
 
 inline void put_value( const char* s1, const string& s2 )
-{ char b[100]; sprintf( b, "%s %s", s1, s2.c_str() ); x86.pb( string( b ) ); }
+{ x86.pb( ssprintf( "%s %s", s1, s2.c_str() ) ); }
 
 inline void x86_code_insert( const string& lb, const int idx )
 { x86.insert( x86.begin() + idx, lb ); }
 
 inline void lbl_( const int i )
-{ char buff[50]; sprintf( buff, "L%d:", i ); x86.pb( string( buff ) );  }
+{ x86.pb( ssprintf( "L%d:", i ) );  }
 
 #define LBL_DEF( name, str ) \
 inline string name##n_( const int i ) { return str + to_string( i ); }
