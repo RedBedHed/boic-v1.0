@@ -308,7 +308,7 @@ inline void switchy_error(const Token& t)
     cout << bunboi 
          << bois[time(0) % sizeofstr( bois )] 
          << "\n\tERROR: " 
-         << " Constant expression used"
+         << "Constant expression used"
          << " in switch statement on line "
          << t.line_no
          << ".\n";
@@ -323,7 +323,7 @@ inline void param_type_error(const Token& t, int i, int j)
     cout << bunboi 
          << bois[time(0) % sizeofstr( bois )] 
          << "\n\tERROR: " 
-         << " Passed a parameter of type "
+         << "Passed a parameter of type "
          << boitypes[ j &= -( ( j -= ARGYBOIS ) >= 0 ) ]
          << " instead of type "
          << boitypes[ i &= -( ( i -= ARGYBOIS ) >= 0 ) ]
@@ -340,7 +340,7 @@ inline void formal_param_type_error(const Token& t, int i, int j)
     cout << bunboi 
          << bois[time(0) % sizeofstr( bois )] 
          << "\n\tERROR: " 
-         << " Redeclared a parameter of type "
+         << "Redeclared a parameter of type "
          << boitypes[ j &= -( ( j -= ARGYBOIS ) >= 0 ) ]
          << " as type "
          << boitypes[ i &= -( ( i -= ARGYBOIS ) >= 0 ) ]
@@ -357,7 +357,7 @@ inline void too_few_params_error( const Token& t )
     cout << bunboi 
          << bois[time(0) % sizeofstr( bois )] 
          << "\n\tERROR: " 
-         << " Not enough param bois on line "
+         << "Not enough param bois on line "
          << t.line_no
          << " for function '"
          << t.lexeme
@@ -370,7 +370,7 @@ inline void too_many_params_error( const Token& t )
     cout << bunboi 
          << bois[time(0) % sizeofstr( bois )] 
          << "\n\tERROR: " 
-         << " Too many param bois on line "
+         << "Too many param bois on line "
          << t.line_no
          << " for function '"
          << t.lexeme
@@ -383,11 +383,25 @@ inline void not_an_array_error( const Token& t )
     cout << bunboi 
          << bois[time(0) % sizeofstr( bois )] 
          << "\n\tERROR: " 
-         << " Variable "
+         << "Variable "
          << t.lexeme
          << " on line "
          << t.line_no
          << " is not an array.\n";
+    exit( 0 );    
+}
+
+inline void array_error( const Token& t )
+{
+    cout << bunboi 
+         << bois[time(0) % sizeofstr( bois )] 
+         << "\n\tERROR: "
+         << "Illegal increment/decrement." 
+         << " Variable "
+         << t.lexeme
+         << " on line "
+         << t.line_no
+         << " an array.\n";
     exit( 0 );    
 }
 
@@ -672,6 +686,12 @@ inline void check_arr( const Token& t )
 {
     if( !arraySet.contains( t.lexeme ) )
         not_an_array_error( t );
+}
+
+inline void check_not_arr( const Token& t )
+{
+    if( arraySet.contains( t.lexeme ) )
+        array_error( t );
 }
 
 inline int64_t parse_int( const Token& t) 

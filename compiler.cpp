@@ -8,6 +8,7 @@ void boic::parse_flow(Analyzer* const a)
         a->nextTok();                                                   \
         Token x = expect<VAR>( a );                                     \
         check_var( x );                                                 \
+        check_not_arr( x );                                             \
         mov_( "rax", bqptr_( stackIdx[ x.lexeme ] ) );                  \
         func_( "rax" );                                                 \
         mov_( bqptr_( stackIdx[ x.lexeme ] ), "rax" );                  \

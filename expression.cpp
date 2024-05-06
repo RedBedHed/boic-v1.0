@@ -192,7 +192,7 @@ void boic::compile_exp_( shared_ptr<ASTNode> n )
     }
 
     #define BY_ONE( func_ )                                                             \
-    func_( lreg ); mov_( bqptr_( stackIdx[ n->left->t.lexeme ] ), lreg );
+    check_not_arr( n->left->t ); func_( lreg ); mov_( bqptr_( stackIdx[ n->left->t.lexeme ] ), lreg );
     #define BOOLEAN( func_ )                                                            \
     test_( lreg, lreg ); func_( regTable[ lid ][ 3 ] ); and_( lreg, 1 );
     #define DIV( str )                                                                  \
