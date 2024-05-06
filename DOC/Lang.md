@@ -250,7 +250,7 @@ r = !(i < 23 && i > 5);
 r = i >= 23 || i <= 5;
 ```
 
-Boolean expressions may be nested within math expressions, allowing a Boi program to make decisions without branching.
+Boolean expressions may be nested within math expressions and vice-versa, allowing a Boi program to make decisions without branching.
 
 ```py
 #=======================
