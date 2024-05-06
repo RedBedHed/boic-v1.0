@@ -209,7 +209,7 @@ i[1] = i[0];
 
 # Expressions
 
-Expressions are the cornerstone of Boilang and extremely versatile.
+Expressions are the cornerstone of Boilang and extremely versatile. The order of operations is very similar to that of C.
 
 ## Express Math
 
