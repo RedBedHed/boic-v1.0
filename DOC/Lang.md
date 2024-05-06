@@ -204,6 +204,7 @@ i[4] = 'o';
 ### Assign from an Index
 ```py
 j = i[0];
+i[1] = i[0];
 ```
 
 # Expressions
