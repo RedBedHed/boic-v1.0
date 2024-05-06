@@ -34,3 +34,9 @@ Boic v1.0 generates assembly that *works.* It simplifies literal expressions, bu
 <p align="center">
   <image src="/art/BoicGood.jpg" width="350"></image>
 </p>
+
+> ### Is Boi Turing-Complete?
+
+**Yes!**
+
+Boi can express a Brainfuck interpreter. Brainfuck is Turing-complete.
